@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DentalClinic</string>
+    <string name="title_activity_navigation_drawer">Arrangements</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="chooseDate_add_arrangement">Choose Date</string>
+    <string name="chooseTime_add_arrangement">Choose Time</string>
+    <string name="cancel_add_arrangement">Cancel</string>
+    <string name="reset_add_arrangement">Reset</string>
+    <string name="submit_add_arrangement">Submit</string>
+    <string name="titleLabel_add_arrangement">Kind of Intervention</string>
+    <string-array name="interventions_array">
+        <item>Filling</item>
+        <item>Endodontics</item>
+        <item>Cleaning</item>
+    </string-array>
+</resources>

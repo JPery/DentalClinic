@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jpery.dentalclinic.InformationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/dentist_teeth"
+        android:id="@+id/imageView4"
+        android:layout_marginBottom="178dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:padding="5sp"
+        android:text="Lorem fistrum fistro officia benemeritaar no te digo trigo por no llamarte Rodrigor ahorarr ullamco diodeno. Laboris ullamco por la gloria de mi madre dolor me cago en tus muelas se calle ustée voluptate ut ese hombree hasta luego Lucas nisi. Hasta luego Lucas ese hombree ad por la gloria de mi madre está la cosa muy malar."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
