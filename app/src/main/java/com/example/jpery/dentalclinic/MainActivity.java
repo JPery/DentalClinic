@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            getSupportActionBar().setTitle(R.string.title_activity_navigation_drawer);
             fab.show();
             clearBackStack();
             navigationView.setCheckedItem(R.id.nav_arrangements);
