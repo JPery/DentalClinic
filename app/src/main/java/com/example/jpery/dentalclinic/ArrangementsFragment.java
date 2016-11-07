@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 public class ArrangementsFragment extends Fragment {
 
@@ -24,13 +23,7 @@ public class ArrangementsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).showFloatingActionButton();
         return inflater.inflate(R.layout.fragment_arrangements, container, false);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 
     @Override
@@ -41,15 +34,5 @@ public class ArrangementsFragment extends Fragment {
                 Log.i("Arrangement", a.toLog());
             }
         }
-    }
-
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        if (FragmentUtils.sDisableFragmentAnimations) {
-            Animation a = new Animation() {};
-            a.setDuration(0);
-            return a;
-        }
-        return super.onCreateAnimation(transit, enter, nextAnim);
     }
 }

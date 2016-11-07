@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static FloatingActionButton fab;
-
     private static DrawerLayout drawer;
     private static NavigationView navigationView;
 
@@ -46,11 +45,25 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_arrangements);
         Fragment fragment = new ArrangementsFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
-        fragmentManager.executePendingTransactions();
+        showFragment(fragment);
+    }
+
+    private void showFragment(Fragment fragment){
+        if (fragment!=null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, fragment);
+            if(fragment instanceof ArrangementsFragment) {
+                fab.show();
+                clearBackStack();
+            }
+            else{
+                fab.hide();
+                fragmentTransaction.addToBackStack(null);
+            }
+            fragmentTransaction.commit();
+            fragmentManager.executePendingTransactions();
+        }
     }
 
     @Override
@@ -59,6 +72,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            fab.show();
             clearBackStack();
             navigationView.setCheckedItem(R.id.nav_arrangements);
         }
@@ -84,12 +98,10 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         Fragment fragment = null;
-        boolean mainFragment=false;
         switch (id){
             case R.id.nav_info:
                 fragment = new InformationFragment();
@@ -98,38 +110,15 @@ public class MainActivity extends AppCompatActivity
                 fragment = new InformationFragment();
                 break;
             case R.id.nav_arrangements:
-                mainFragment=true;
                 fragment = new ArrangementsFragment();
                 break;
         }
-        if (fragment!=null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment);
-            if(!mainFragment) {
-                fragmentTransaction.addToBackStack(null);
-            }
-            else{
-                clearBackStack();
-            }
-            fragmentTransaction.commit();
-            fragmentManager.executePendingTransactions();
-        }
+        showFragment(fragment);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     public void clearBackStack() {
-        FragmentUtils.sDisableFragmentAnimations = true;
         getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        FragmentUtils.sDisableFragmentAnimations = false;
-    }
-
-    public void showFloatingActionButton() {
-        fab.show();
-    }
-
-    public void hideFloatingActionButton() {
-        fab.hide();
     }
 }
