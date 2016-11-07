@@ -7,8 +7,6 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -25,8 +23,6 @@ public class AddArrangementActivity extends AppCompatActivity {
 
     // 7 days in milliseconds - 7 * 24 * 60 * 60 * 1000
     private static final int SEVEN_DAYS = 604800000;
-
-    private static final String TAG = "Lab-UserInterface";
 
     private static String timeString;
     private static String dateString;
@@ -191,9 +187,5 @@ public class AddArrangementActivity extends AppCompatActivity {
             setTimeString(hourOfDay, minute, 0);
             timeView.setText(timeString);
         }
-    }
-
-    private void log(String msg) {
-        Log.i(TAG, msg);
     }
 }

@@ -1,8 +1,6 @@
 package com.example.jpery.dentalclinic;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,12 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static FloatingActionButton fab;
     private static DrawerLayout drawer;
     private static NavigationView navigationView;
 
@@ -29,13 +25,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(new Intent(MainActivity.this,AddArrangementActivity.class),1);
-            }
-        });
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,13 +41,11 @@ public class MainActivity extends AppCompatActivity
         if (fragment!=null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
             if(fragment instanceof ArrangementsFragment) {
-                fab.show();
                 clearBackStack();
             }
             else{
-                fab.hide();
                 fragmentTransaction.addToBackStack(null);
             }
             fragmentTransaction.commit();
@@ -73,7 +60,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
             getSupportActionBar().setTitle(R.string.title_activity_navigation_drawer);
-            fab.show();
             clearBackStack();
             navigationView.setCheckedItem(R.id.nav_arrangements);
         }

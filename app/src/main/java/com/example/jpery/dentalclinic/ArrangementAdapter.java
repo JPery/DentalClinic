@@ -5,14 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.ViewHolder> {
-    private final List<Arrangement> mItems = new ArrayList<Arrangement>();
+    private static final List<Arrangement> mItems = new ArrayList<Arrangement>();
 
     public interface OnItemClickListener {
         void onItemClick(Arrangement item);     //Type of the element to be returned
@@ -22,7 +21,6 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ArrangementAdapter(OnItemClickListener listener) {
-
         this.listener = listener;
     }
 
@@ -48,23 +46,17 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
     }
 
     public void add(Arrangement item) {
-
         mItems.add(item);
         notifyDataSetChanged();
-
     }
 
     public void clear(){
-
         mItems.clear();
         notifyDataSetChanged();
-
     }
 
     public Object getItem(int pos) {
-
         return mItems.get(pos);
-
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,17 +70,12 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.titleView);
             dateView = (TextView) itemView.findViewById(R.id.dateView);
-            priorityView = (TextView) itemView.findViewById(R.id.priorityView);
-            statusView = (CheckBox) itemView.findViewById(R.id.statusCheckBox);
         }
 
         public void bind(final Arrangement toDoItem, final OnItemClickListener listener) {
-
             title.setText(toDoItem.getTitle());
-
             // Hint - use ToDoItem.FORMAT.format(toDoItem.getDate()) to get date and time String
             dateView.setText(toDoItem.FORMAT.format(toDoItem.getDate()));
-
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -98,5 +85,4 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
             });
         }
     }
-
 }
