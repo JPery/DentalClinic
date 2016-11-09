@@ -35,6 +35,8 @@ public class AddArrangementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dateString="";
+        timeString="";
         setContentView(R.layout.activity_add_arrangement);
         getSupportActionBar().setTitle(R.string.title_add_arrangement_activity);
         dateView = (TextView) findViewById(R.id.date);
@@ -76,7 +78,7 @@ public class AddArrangementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String title = spinner.getSelectedItem().toString();
-                String date = dateString;
+                String date = dateString + " " + timeString;
                 Intent i = new Intent();
                 Arrangement.packageIntent(i,title,date);
                 setResult(RESULT_OK, i);

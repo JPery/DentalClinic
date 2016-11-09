@@ -62,8 +62,6 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView title;
-        private CheckBox statusView;
-        private TextView priorityView;
         private TextView dateView;
 
         public ViewHolder(View itemView) {

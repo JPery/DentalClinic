@@ -20,7 +20,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp"
         android:id="@+id/emailText"
-        android:hint="Email" />
+        android:hint="Email"
+        style="@android:style/Widget.Holo.EditText"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,7 +31,8 @@
         android:layout_below="@+id/emailText"
         android:layout_alignStart="@+id/emailText"
         android:id="@+id/passwordText"
-        android:hint="Password" />
+        android:hint="Password"
+        style="@android:style/Widget.Holo.EditText" />
 
     <ImageView
         android:layout_width="wrap_content"

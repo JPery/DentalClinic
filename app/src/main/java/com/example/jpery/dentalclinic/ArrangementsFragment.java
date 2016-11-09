@@ -58,6 +58,7 @@ public class ArrangementsFragment extends Fragment {
         }
         );
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         return v;
     }
 
