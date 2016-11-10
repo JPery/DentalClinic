@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://10.0.2.2:8080")
+                        .baseUrl("http://158.49.245.86:9000")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 UsersService service = retrofit.create(UsersService.class);
