@@ -6,8 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import org.json.JSONObject;
-
 /**
  * Created by j.pery on 8/11/16.
  */

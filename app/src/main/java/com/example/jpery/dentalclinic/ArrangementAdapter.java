@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.ViewHolder> {
-    private static final List<Arrangement> mItems = new ArrayList<Arrangement>();
 
     public interface OnItemClickListener {
         void onItemClick(Arrangement item);     //Type of the element to be returned
@@ -35,28 +34,28 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(mItems.get(position),listener);
+        holder.bind(ArrangementsController.getInstance().getList().get(position),listener);
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return ArrangementsController.getInstance().getList().size();
     }
 
     public void add(Arrangement item) {
-        mItems.add(item);
+        ArrangementsController.getInstance().getList().add(item);
         notifyDataSetChanged();
     }
 
     public void clear(){
-        mItems.clear();
+        ArrangementsController.getInstance().getList().clear();
         notifyDataSetChanged();
     }
 
     public Object getItem(int pos) {
-        return mItems.get(pos);
+        return ArrangementsController.getInstance().getList().get(pos);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,8 +71,7 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
 
         public void bind(final Arrangement toDoItem, final OnItemClickListener listener) {
             title.setText(toDoItem.getTitle());
-            // Hint - use ToDoItem.FORMAT.format(toDoItem.getDate()) to get date and time String
-            dateView.setText(toDoItem.FORMAT.format(toDoItem.getDate()));
+            dateView.setText(Constants.DATE_FORMAT.format(toDoItem.getDate()));
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override

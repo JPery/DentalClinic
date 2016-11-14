@@ -3,10 +3,18 @@
     <string name="title_activity_navigation_drawer">Arrangements</string>
     <string name="title_information_fragment">Information</string>
     <string name="title_add_arrangement_activity">Add Arrangement</string>
+    <string name="title_activity_confirm_arrangement">Confirm Arrangement</string>
+    <string name="select_arrangement">Select an Arrangement</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="wrong_username_password">Wrong Email or Password</string>
+    <string name="empty_password">Password cannot be empty</string>
+    <string name="empty_email">Email cannot be empty</string>
+    <string name="internet_problem">There is a problem with your Internet Connection</string>
+    <string name="operation_not_completed">Operation couldn\'t be completed</string>
     <string name="action_settings">Settings</string>
+    <string name="choose_arrangement">Select an arrangement:</string>
     <string name="chooseDate_add_arrangement">Choose Date</string>
     <string name="chooseTime_add_arrangement">Choose Time</string>
     <string name="cancel_add_arrangement">Cancel</string>
@@ -18,4 +26,7 @@
         <item>Endodontics</item>
         <item>Cleaning</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -23,6 +23,10 @@
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddArrangementActivity" />
+        <activity
+            android:name=".ConfirmArrangementFragment"
+            android:label="@string/title_activity_confirm_arrangement"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

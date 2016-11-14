@@ -1,10 +1,12 @@
 package com.example.jpery.dentalclinic;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,9 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.androidadvance.topsnackbar.TSnackbar;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ArrangementsFragment.OnArrangementsLoadedListener {
 
     private static DrawerLayout drawer;
     private static NavigationView navigationView;
@@ -34,12 +40,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_arrangements);
         Fragment fragment = new ArrangementsFragment();
+        Bundle bundle = getIntent().getExtras();
+        fragment.setArguments(bundle);
         showFragment(fragment);
     }
 
     private void showFragment(Fragment fragment){
         if (fragment!=null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             if(fragment instanceof ArrangementsFragment) {
@@ -81,6 +89,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_settings:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_logout:
                 finish();
@@ -110,6 +119,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void clearBackStack() {
-        getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ArrangementsController.getInstance().getList().clear();
+    }
+
+    @Override
+    public void showToast() {
+        PreferenceManager.setDefaultValues(this,R.xml.preferences,false);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = sharedPreferences.getString(SettingsFragment.KEY_PREF_USERNAME,"");
+        if(sharedPreferences.getBoolean(SettingsFragment.KEY_PREF_WELCOME_MESSAGE,true)) {
+            final TSnackbar topSnackbar = TSnackbar.make(findViewById(R.id.fragment_container), "Hi, " + username + " you have " + ArrangementsController.getInstance().getList().size() + " pending arrangements", TSnackbar.LENGTH_INDEFINITE).setActionTextColor(getResources().getColor(R.color.colorDivider));
+            TextView textView = (TextView) topSnackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(getResources().getColor(R.color.colorIcons));
+            topSnackbar.setAction("Dismiss", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    topSnackbar.dismiss();
+                }
+            });
+            topSnackbar.show();
+        }
     }
 }

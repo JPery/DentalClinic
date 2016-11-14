@@ -1,7 +1,11 @@
 package com.example.jpery.dentalclinic;
 
+import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,60 +15,99 @@ import java.util.Locale;
 
 public class Arrangement {
 
-	public static final String ITEM_SEP = System.getProperty("line.separator");
-	public final static String TITLE = "title";
-	public final static String DATE = "date";
+    private int id;
+    private String title;
+    private Date date;
+    private int owner;
 
-	public final static SimpleDateFormat FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss", Locale.US);
+    public Arrangement() {
+    }
 
-	private String mTitle = new String();
-	private Date mDate = new Date();
+    public Arrangement(int id, String title, Date date, int owner) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+        this.owner = owner;
+    }
 
-	public Arrangement(String title, Date date) {
-		this.mTitle = title;
-		this.mDate = date;
-	}
+    public Arrangement(String title, String date) {
+        this.title = title;
+        try {
+            this.date = Constants.DATE_FORMAT.parse(date);
+        } catch (ParseException e) {
+            this.date = new Date();
+        }
+    }
 
-	// Create a new Arrangement from data packaged in an Intent
-	public Arrangement(Intent intent) {
-		mTitle = intent.getStringExtra(Arrangement.TITLE);
-		try {
-			mDate = Arrangement.FORMAT.parse(intent.getStringExtra(Arrangement.DATE));
-		} catch (ParseException e) {
-			mDate = new Date();
-		}
-	}
+    public Arrangement(Intent intent, int userID) {
+        title = intent.getStringExtra(Constants.EXTRAS_TITLE);
+        try {
+            date = Constants.DATE_FORMAT.parse(intent.getStringExtra(Constants.EXTRAS_DATE));
+        } catch (ParseException e) {
+            date = new Date();
+        }
+        owner = userID;
+    }
 
-	public String getTitle() {
-		return mTitle;
-	}
+    public Arrangement(Fragment fragment) {
+        Bundle bundle = fragment.getArguments();
+        title = bundle.getString(Constants.EXTRAS_TITLE);
+        try {
+            date = Constants.DATE_FORMAT.parse(bundle.getString(Constants.EXTRAS_DATE));
+        } catch (ParseException e) {
+            date = new Date();
+        }
+    }
 
-	public void setTitle(String title) {
-		mTitle = title;
-	}
+    public static void packageIntent(Intent intent, String title, String date) {
+        intent.putExtra(Constants.EXTRAS_TITLE, title);
+        intent.putExtra(Constants.EXTRAS_DATE, date);
+    }
 
-	public Date getDate() {
-		return mDate;
-	}
+    public static void packageFragment(Fragment fragment, String title, String date) {
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.EXTRAS_TITLE, title);
+        bundle.putString(Constants.EXTRAS_DATE, date);
+        fragment.setArguments(bundle);
+    }
 
-	public void setDate(Date date) {
-		mDate = date;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	// Take a set of String data values and 
-	// package them for transport in an Intent
-	public static void packageIntent(Intent intent, String title, String date) {
-		intent.putExtra(Arrangement.TITLE, title);
-		intent.putExtra(Arrangement.DATE, date);
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String toString() {
-		return mTitle + ITEM_SEP + ITEM_SEP + ITEM_SEP
-				+ FORMAT.format(mDate);
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public String toLog() {
-		return "Title:" + mTitle + ITEM_SEP + "Priority:" + ITEM_SEP + "Status:" + ITEM_SEP + "Date:" + FORMAT.format(mDate);
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
+    }
+
+    public String toString() {
+        return title + System.getProperty("line.separator") + Constants.DATE_FORMAT.format(date);
+    }
+
+    public String toLog() {
+        return "Title:" + title + Constants.ITEM_SEPARATOR + "Date:" + Constants.DATE_FORMAT.format(date);
+    }
 }

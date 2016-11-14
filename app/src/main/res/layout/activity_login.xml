@@ -50,6 +50,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/login_button"
         android:layout_below="@+id/passwordText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp" />
+        android:layout_alignStart="@+id/passwordText"
+        android:layout_alignEnd="@+id/passwordText" />
 </RelativeLayout>

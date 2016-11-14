@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://158.49.245.86:9000")
+                        .baseUrl(Constants.API_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 UsersService service = retrofit.create(UsersService.class);
@@ -51,28 +51,33 @@ public class LoginActivity extends AppCompatActivity {
                         call.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
-                                if (response.code() == 200)
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                if (response.code() == 200) {
+                                    mEmailText.setText("");
+                                    mPasswordText.setText("");
+                                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                    intent.putExtra(Constants.API_USER_ID, response.body().getId());
+                                    startActivity(intent);
+                                }
                                 else {
-                                    //Snackbar.make(LoginActivity.this.getCurrentFocus(), "Wrong Email or Password", Snackbar.LENGTH_LONG).show();
-                                    Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Wrong Email or Password", Toast.LENGTH_LONG).show();
+                                    Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.wrong_username_password, Snackbar.LENGTH_LONG).show();
+                                    //Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Wrong Email or Password", Toast.LENGTH_LONG).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
-                               // Snackbar.make(LoginActivity.this.getCurrentFocus(), "There is a problem with your Internet connection", Snackbar.LENGTH_LONG).show();
-                                Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"There is a problem with your Internet connection", Toast.LENGTH_LONG).show();
+                                Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.internet_problem, Snackbar.LENGTH_LONG).show();
+                                //Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"There is a problem with your Internet connection", Toast.LENGTH_LONG).show();
                             }
                         });
 
                     } else {
-                        //Snackbar.make(LoginActivity.this.getCurrentFocus(), "Password cannot be empty", Snackbar.LENGTH_LONG).show();
-                        Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Password cannot be empty", Toast.LENGTH_LONG).show();
+                        Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.empty_password, Snackbar.LENGTH_LONG).show();
+                       // Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Password cannot be empty", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                   // Snackbar.make(LoginActivity.this.getCurrentFocus(), "Email cannot be empty", Snackbar.LENGTH_LONG).show();
-                    Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Email cannot be empty", Toast.LENGTH_LONG).show();
+                    Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.empty_email, Snackbar.LENGTH_LONG).show();
+                   // Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Email cannot be empty", Toast.LENGTH_LONG).show();
                 }
             }
         });

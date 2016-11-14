@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <PreferenceCategory android:title="Main Screen">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:title="Welcome message"
+            android:key="pref_welcome_message"
+            android:summary="Reminds you your pending arrangements" />
+        <EditTextPreference
+            android:defaultValue="Jorge"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="User name"
+            android:key="pref_username"
+            android:summary="Name used in the welcome message" />
+    </PreferenceCategory>
+</PreferenceScreen>
