@@ -1,8 +1,7 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.jpery.dentalclinic.model.Arrangement;
+import com.example.jpery.dentalclinic.adapters.ArrangementAdapter;
+import com.example.jpery.dentalclinic.services.ArrangementsService;
+import com.example.jpery.dentalclinic.utils.Constants;
+import com.example.jpery.dentalclinic.R;
+import com.example.jpery.dentalclinic.utils.SimpleDividerItemDecoration;
+import com.example.jpery.dentalclinic.activities.AddArrangementActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -31,9 +37,6 @@ public class ArrangementsFragment extends Fragment {
 
 
     private OnArrangementsLoadedListener mCallback;
-    private static FloatingActionButton fab;
-    private static RecyclerView mRecyclerView;
-    private static RecyclerView.LayoutManager mLayoutManager;
     private static ArrangementAdapter mAdapter;
     private static int userID;
 
@@ -73,7 +76,10 @@ public class ArrangementsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_arrangements, container, false);
+        FloatingActionButton fab;
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
+        final View v = inflater.inflate(R.layout.fragment_arrangements, container, false);
         fab = (FloatingActionButton) v.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +99,7 @@ public class ArrangementsFragment extends Fragment {
         mAdapter = new ArrangementAdapter(new ArrangementAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Arrangement item) {
-                Snackbar.make(getActivity().getCurrentFocus(), "Item " + item.getTitle() + " clicked", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Item " + item.getTitle() + " clicked", Snackbar.LENGTH_LONG).show();
             }
         }
         );
@@ -105,8 +111,6 @@ public class ArrangementsFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -115,15 +119,16 @@ public class ArrangementsFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnArrangementsLoadedListener");
         }
+        super.onAttach(activity);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                final Arrangement arrangement = new Arrangement(data, userID);
+                final Arrangement arrangement = new Arrangement(data,userID);
                 Gson gson = new GsonBuilder()
-                        .setDateFormat(Constants.DATE_FORMAT_STRING)
+                        .setDateFormat(Constants.DATE_FORMAT_STRING_JSON)
                         .create();
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(Constants.API_URL)
@@ -136,7 +141,7 @@ public class ArrangementsFragment extends Fragment {
                     public void onResponse(Call<Arrangement> call, Response<Arrangement> response) {
                         if (response.code() == 201) {
                             mAdapter.add(arrangement);
-                        }else
+                        } else
                             Toast.makeText(getActivity().getCurrentFocus().getContext(), R.string.operation_not_completed, Toast.LENGTH_LONG).show();
                         Log.i("Response code", "" + response.code());
                     }
@@ -151,6 +156,7 @@ public class ArrangementsFragment extends Fragment {
             }
         }
     }
+
     public interface OnArrangementsLoadedListener {
         public void showToast();
     }

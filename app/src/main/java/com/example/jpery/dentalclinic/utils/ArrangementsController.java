@@ -1,10 +1,12 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.utils;
+
+import com.example.jpery.dentalclinic.model.Arrangement;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by j.pery on 11/11/16.
+ * Created by JPery on 11/11/2016
  */
 public class ArrangementsController {
 

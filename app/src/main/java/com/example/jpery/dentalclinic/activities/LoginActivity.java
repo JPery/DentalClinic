@@ -1,19 +1,17 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
+import com.example.jpery.dentalclinic.utils.Constants;
+import com.example.jpery.dentalclinic.R;
+import com.example.jpery.dentalclinic.model.User;
+import com.example.jpery.dentalclinic.services.UsersService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordText = (TextView) findViewById(R.id.passwordText);
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(Constants.API_URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -52,32 +50,28 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
                                 if (response.code() == 200) {
-                                    mEmailText.setText("");
-                                    mPasswordText.setText("");
                                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                     intent.putExtra(Constants.API_USER_ID, response.body().getId());
                                     startActivity(intent);
+                                    mEmailText.setText("");
+                                    mPasswordText.setText("");
                                 }
                                 else {
-                                    Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.wrong_username_password, Snackbar.LENGTH_LONG).show();
-                                    //Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Wrong Email or Password", Toast.LENGTH_LONG).show();
+                                    Snackbar.make(view, R.string.wrong_username_password, Snackbar.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
-                                Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.internet_problem, Snackbar.LENGTH_LONG).show();
-                                //Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"There is a problem with your Internet connection", Toast.LENGTH_LONG).show();
+                                Snackbar.make(view, R.string.internet_problem, Snackbar.LENGTH_SHORT).show();
                             }
                         });
 
                     } else {
-                        Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.empty_password, Snackbar.LENGTH_LONG).show();
-                       // Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Password cannot be empty", Toast.LENGTH_LONG).show();
+                        Snackbar.make(view, R.string.empty_password, Snackbar.LENGTH_SHORT).show();
                     }
                 } else {
-                    Snackbar.make(LoginActivity.this.getCurrentFocus(), R.string.empty_email, Snackbar.LENGTH_LONG).show();
-                   // Toast.makeText(LoginActivity.this.getCurrentFocus().getContext(),"Email cannot be empty", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, R.string.empty_email, Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

@@ -1,20 +1,18 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.model;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.io.Serializable;
+import com.example.jpery.dentalclinic.utils.Constants;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-// Do not modify 
-
 public class Arrangement {
-
+    public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
     private int id;
     private String title;
     private Date date;
@@ -23,26 +21,10 @@ public class Arrangement {
     public Arrangement() {
     }
 
-    public Arrangement(int id, String title, Date date, int owner) {
-        this.id = id;
-        this.title = title;
-        this.date = date;
-        this.owner = owner;
-    }
-
-    public Arrangement(String title, String date) {
-        this.title = title;
-        try {
-            this.date = Constants.DATE_FORMAT.parse(date);
-        } catch (ParseException e) {
-            this.date = new Date();
-        }
-    }
-
     public Arrangement(Intent intent, int userID) {
         title = intent.getStringExtra(Constants.EXTRAS_TITLE);
         try {
-            date = Constants.DATE_FORMAT.parse(intent.getStringExtra(Constants.EXTRAS_DATE));
+            date = DATE_FORMAT.parse(intent.getStringExtra(Constants.EXTRAS_DATE));
         } catch (ParseException e) {
             date = new Date();
         }
@@ -53,15 +35,10 @@ public class Arrangement {
         Bundle bundle = fragment.getArguments();
         title = bundle.getString(Constants.EXTRAS_TITLE);
         try {
-            date = Constants.DATE_FORMAT.parse(bundle.getString(Constants.EXTRAS_DATE));
+            date = DATE_FORMAT.parse(bundle.getString(Constants.EXTRAS_DATE));
         } catch (ParseException e) {
             date = new Date();
         }
-    }
-
-    public static void packageIntent(Intent intent, String title, String date) {
-        intent.putExtra(Constants.EXTRAS_TITLE, title);
-        intent.putExtra(Constants.EXTRAS_DATE, date);
     }
 
     public static void packageFragment(Fragment fragment, String title, String date) {
@@ -83,10 +60,6 @@ public class Arrangement {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public int getId() {
         return id;
     }
@@ -95,19 +68,7 @@ public class Arrangement {
         this.id = id;
     }
 
-    public int getOwner() {
-        return owner;
-    }
-
-    public void setOwner(int owner) {
-        this.owner = owner;
-    }
-
     public String toString() {
-        return title + System.getProperty("line.separator") + Constants.DATE_FORMAT.format(date);
-    }
-
-    public String toLog() {
-        return "Title:" + title + Constants.ITEM_SEPARATOR + "Date:" + Constants.DATE_FORMAT.format(date);
+        return title + System.getProperty("line.separator") + DATE_FORMAT.format(date);
     }
 }

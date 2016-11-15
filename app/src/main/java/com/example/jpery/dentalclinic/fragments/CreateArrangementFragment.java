@@ -1,4 +1,4 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -17,18 +17,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.jpery.dentalclinic.model.Arrangement;
+import com.example.jpery.dentalclinic.utils.Constants;
+import com.example.jpery.dentalclinic.R;
+
 import java.util.Calendar;
 import java.util.Date;
 
 public class CreateArrangementFragment extends Fragment {
 
-    private static final int SEVEN_DAYS = 604800000;
-
     private static String timeString;
     private static String dateString;
     private static TextView dateView;
     private static TextView timeView;
-    private static Spinner spinner;
+    private Spinner spinner;
 
     private Date mDate;
 
@@ -45,12 +47,8 @@ public class CreateArrangementFragment extends Fragment {
         getActivity().setTitle(R.string.title_add_arrangement_activity);
         dateView = (TextView) v.findViewById(R.id.date);
         timeView = (TextView) v.findViewById(R.id.time);
-        // Set the default date and time
 
         setDefaultDateTime();
-
-        // OnClickListener for the Date button, calls showDatePickerDialog() to show
-        // the Date dialog
 
         final Button datePickerButton = (Button) v.findViewById(R.id.date_picker_button);
         datePickerButton.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +58,6 @@ public class CreateArrangementFragment extends Fragment {
                 showDatePickerDialog();
             }
         });
-
-        // OnClickListener for the Time button, calls showTimePickerDialog() to show
-        // the Time Dialog
-
         final Button timePickerButton = (Button) v.findViewById(R.id.time_picker_button);
         timePickerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -96,74 +90,54 @@ public class CreateArrangementFragment extends Fragment {
 
     private void showDatePickerDialog() {
         DialogFragment datePickerFragment = new DatePickerFragment();
-        datePickerFragment.show(getFragmentManager(),Constants.DATEPICKER);
+        datePickerFragment.show(getFragmentManager(), Constants.DATE_PICKER);
     }
 
     private void showTimePickerDialog() {
         DialogFragment timePickerFragment = new TimePickerFragment();
-        timePickerFragment.show(getChildFragmentManager(),Constants.TIMEPICKER);
+        timePickerFragment.show(getChildFragmentManager(),Constants.TIME_PICKER);
     }
 
-    // Do not modify below here
-    // Use this method to set the default date and time
-
     private void setDefaultDateTime() {
-
-        // Default is current time + 7 days
         mDate = new Date();
-
         Calendar c = Calendar.getInstance();
         c.setTime(mDate);
-
         setDateString(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH));
-
         dateView.setText(dateString);
-
-        setTimeString(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),
-                c.get(Calendar.MILLISECOND));
-
+        setTimeString(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));
         timeView.setText(timeString);
     }
 
     private static void setDateString(int year, int monthOfYear, int dayOfMonth) {
-
-        // Increment monthOfYear for Calendar/Date -> Time Format setting
         monthOfYear++;
         String mon = "" + monthOfYear;
         String day = "" + dayOfMonth;
-
         if (monthOfYear < 10)
             mon = "0" + monthOfYear;
         if (dayOfMonth < 10)
             day = "0" + dayOfMonth;
-
         dateString = year + "-" + mon + "-" + day;
     }
 
-    private static void setTimeString(int hourOfDay, int minute, int mili) {
+    private static void setTimeString(int hourOfDay, int minute) {
         String hour = "" + hourOfDay;
         String min = "" + minute;
-
         if (hourOfDay < 10)
             hour = "0" + hourOfDay;
         if (minute < 10)
             min = "0" + minute;
-
         timeString = hour + ":" + min + ":00";
     }
-    // DialogFragment used to pick a ToDoItem deadline date
 
     public static class DatePickerFragment extends DialogFragment implements
             DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
-            // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
@@ -175,22 +149,19 @@ public class CreateArrangementFragment extends Fragment {
         }
     }
 
-    // DialogFragment used to pick a ToDoItem deadline time
     public static class TimePickerFragment extends DialogFragment implements
             TimePickerDialog.OnTimeSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
             final Calendar c = Calendar.getInstance();
             int hour = c.get(Calendar.HOUR_OF_DAY);
             int minute = c.get(Calendar.MINUTE);
-            // Create a new instance of TimePickerDialog and return
             return new TimePickerDialog(getActivity(), this, hour, minute,
                     true);
         }
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            setTimeString(hourOfDay, minute, 0);
+            setTimeString(hourOfDay, minute);
             timeView.setText(timeString);
         }
     }

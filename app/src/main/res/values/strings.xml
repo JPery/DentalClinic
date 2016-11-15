@@ -2,12 +2,21 @@
     <string name="app_name">DentalClinic</string>
     <string name="title_activity_navigation_drawer">Arrangements</string>
     <string name="title_information_fragment">Information</string>
+    <string name="title_budgets_fragment">Budgets</string>
     <string name="title_add_arrangement_activity">Add Arrangement</string>
     <string name="title_activity_confirm_arrangement">Confirm Arrangement</string>
     <string name="select_arrangement">Select an Arrangement</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="lorem_ipsum">Lorem fistrum fistro officia benemeritaar no te digo trigo por no llamarte Rodrigor ahorarr ullamco diodeno. Laboris ullamco por la gloria de mi madre dolor me cago en tus muelas se calle ustée voluptate ut ese hombree hasta luego Lucas nisi. Hasta luego Lucas ese hombree ad por la gloria de mi madre está la cosa muy malar.</string>
+    <string name="filling_description">The dental filling is a dental restorative material used to restore the function, integrity and morphology of missing tooth structure. The structural loss typically results from caries or external trauma.</string>
+    <string name="cleaning_description">Teeth cleaning is part of oral hygiene and involves the removal of dental plaque from teeth with the intention of preventing cavities, gingivitis, and periodontal disease. People routinely clean their own teeth by brushing and interdental cleaning, and dental hygienists can remove hardened deposits not removed by routine cleaning. Those with dentures and natural teeth may supplement their cleaning with a denture cleaner.</string>
+    <string name="endodontics_description">The endodontic therapy or root canal therapy is a sequence of treatment for the infected pulp of a tooth which results in the elimination of infection and the protection of the decontaminated tooth from future microbial invasion. Root canals, and their associated pulp chamber, are the physical hollows within a tooth that are naturally inhabited by nerve tissue, blood vessels and other cellular entities.</string>
+    <string name="login_image_description">Image of a tooth</string>
+    <string name="email_placeholder">Email</string>
+    <string name="password_placeholder">Password</string>
+    <string name="login_button">Login</string>
     <string name="wrong_username_password">Wrong Email or Password</string>
     <string name="empty_password">Password cannot be empty</string>
     <string name="empty_email">Email cannot be empty</string>
@@ -17,16 +26,17 @@
     <string name="choose_arrangement">Select an arrangement:</string>
     <string name="chooseDate_add_arrangement">Choose Date</string>
     <string name="chooseTime_add_arrangement">Choose Time</string>
-    <string name="cancel_add_arrangement">Cancel</string>
-    <string name="reset_add_arrangement">Reset</string>
     <string name="submit_add_arrangement">Submit</string>
     <string name="titleLabel_add_arrangement">Kind of Intervention</string>
+    <string name="logout_item">Logout</string>
+    <string name="pref_category1">Main Screen</string>
+    <string name="pref_welcome_message">Welcome message</string>
+    <string name="pref_welcome_message_subtitle">Reminds you your pending arrangements</string>
+    <string name="pref_username">Username</string>
+    <string name="pref_username_subtitle">Name used in the welcome message</string>
     <string-array name="interventions_array">
         <item>Filling</item>
         <item>Endodontics</item>
         <item>Cleaning</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

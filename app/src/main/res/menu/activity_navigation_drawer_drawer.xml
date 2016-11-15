@@ -3,17 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:title="Arrangements"
+        <item android:title="@string/title_activity_navigation_drawer"
             android:icon="@drawable/ic_event"
             android:id="@+id/nav_arrangements" />
         <item
             android:id="@+id/nav_budget"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Budgets" />
+            android:title="@string/title_budgets_fragment" />
         <item
             android:id="@+id/nav_info"
             android:icon="@android:drawable/ic_menu_info_details"
-            android:title="Information" />
+            android:title="@string/title_information_fragment" />
     </group>
 
 </menu>

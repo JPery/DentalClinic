@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.jpery.dentalclinic.LoginActivity">
+    tools:context="com.example.jpery.dentalclinic.activities.LoginActivity">
 
     <EditText
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp"
         android:id="@+id/emailText"
-        android:hint="Email"
+        android:hint="@string/email_placeholder"
         style="@android:style/Widget.Holo.EditText"/>
 
     <EditText
@@ -31,7 +31,7 @@
         android:layout_below="@+id/emailText"
         android:layout_alignStart="@+id/emailText"
         android:id="@+id/passwordText"
-        android:hint="Password"
+        android:hint="@string/password_placeholder"
         style="@android:style/Widget.Holo.EditText" />
 
     <ImageView
@@ -41,11 +41,12 @@
         android:id="@+id/imageView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/login_image_description"/>
 
     <Button
-        android:backgroundTint="@color/colorPrimaryLight"
-        android:text="Login"
+        android:background="@color/colorPrimaryLight"
+        android:text="@string/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/login_button"

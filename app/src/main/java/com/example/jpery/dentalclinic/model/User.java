@@ -1,4 +1,4 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.model;
 /**
  * Created by JPery on 9/11/16
  */
