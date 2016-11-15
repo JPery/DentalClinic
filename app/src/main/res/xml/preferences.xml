@@ -2,19 +2,19 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
 
-    <PreferenceCategory android:title="Main Screen">
+    <PreferenceCategory android:title="@string/pref_category1">
 
         <SwitchPreference
             android:defaultValue="true"
-            android:title="Welcome message"
+            android:title="@string/pref_welcome_message"
             android:key="pref_welcome_message"
-            android:summary="Reminds you your pending arrangements" />
+            android:summary="@string/pref_welcome_message_subtitle" />
         <EditTextPreference
-            android:defaultValue="Jorge"
+            android:defaultValue="User"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="User name"
+            android:title="@string/pref_username"
             android:key="pref_username"
-            android:summary="Name used in the welcome message" />
+            android:summary="@string/pref_username_subtitle" />
     </PreferenceCategory>
 </PreferenceScreen>

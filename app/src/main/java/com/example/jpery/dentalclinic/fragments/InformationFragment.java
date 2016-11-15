@@ -1,4 +1,4 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.fragments;
 
 
 import android.app.Fragment;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.jpery.dentalclinic.R;
 
 public class InformationFragment extends Fragment {
 

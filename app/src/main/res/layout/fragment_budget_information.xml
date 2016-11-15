@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jpery.dentalclinic.fragments.BudgetInformationFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:textAppearance="@android:style/TextAppearance.Holo.Widget"
+        android:textSize="24sp"
+        android:id="@+id/budget_title" />
+
+    <TextView
+        android:text="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/budget_description"
+        android:padding="10sp"
+        android:layout_below="@+id/budget_title"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

@@ -1,4 +1,6 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.services;
+
+import com.example.jpery.dentalclinic.model.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

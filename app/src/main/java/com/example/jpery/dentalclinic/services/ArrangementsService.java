@@ -1,4 +1,6 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.services;
+
+import com.example.jpery.dentalclinic.model.Arrangement;
 
 import java.util.List;
 
@@ -22,4 +24,6 @@ public interface ArrangementsService {
     @POST("arrangements/")
     Call<Arrangement> addArrangement(@Body Arrangement arrangement);
 
+    @GET("arrangements/date={date}")
+    Call<List<Arrangement>> getArrangementsbyDate(@Path("date") String date);
 }

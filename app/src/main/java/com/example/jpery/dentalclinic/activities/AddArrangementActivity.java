@@ -1,16 +1,15 @@
-package com.example.jpery.dentalclinic;
+package com.example.jpery.dentalclinic.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import com.example.jpery.dentalclinic.fragments.CreateArrangementFragment;
+import com.example.jpery.dentalclinic.R;
 
 public class AddArrangementActivity extends AppCompatActivity {
-
-    // 7 days in milliseconds - 7 * 24 * 60 * 60 * 1000
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
