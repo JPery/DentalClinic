@@ -2,6 +2,8 @@ package com.example.jpery.dentalclinic.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,7 +27,10 @@ import com.example.jpery.dentalclinic.activities.AddArrangementActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,17 +94,26 @@ public class ArrangementsFragment extends Fragment {
         });
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_activity_navigation_drawer);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.arrangements_recycler_view);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        // specify an adapter (see also next example)
         mAdapter = new ArrangementAdapter(new ArrangementAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Arrangement item) {
-                Snackbar.make(v, "Item " + item.getTitle() + " clicked", Snackbar.LENGTH_LONG).show();
+                Fragment fragment = new ArrangementInformationFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(Constants.EXTRAS_KIND_OF_INTERVENTION,item.getKindOfIntervention());
+                DateFormat df = new SimpleDateFormat(Constants.DATE_FORMAT_STRING);
+                df.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE));
+                bundle.putString(Constants.EXTRAS_DATE,df.format(item.getDate()));
+                bundle.putString(Constants.EXTRAS_COMMENT,item.getComment());
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment,Constants.FRAGMENT_BUDGETS);
+                fragmentTransaction.addToBackStack(Constants.FRAGMENT_BUDGETS);
+                fragmentTransaction.commit();
+                fragmentManager.executePendingTransactions();
             }
         }
         );
@@ -139,7 +153,7 @@ public class ArrangementsFragment extends Fragment {
                 call.enqueue(new Callback<Arrangement>() {
                     @Override
                     public void onResponse(Call<Arrangement> call, Response<Arrangement> response) {
-                        if (response.code() == 201) {
+                        if (response.code() == 201 && response.body().getKindOfIntervention()>0) {
                             mAdapter.add(arrangement);
                         } else
                             Toast.makeText(getActivity().getCurrentFocus().getContext(), R.string.operation_not_completed, Toast.LENGTH_LONG).show();

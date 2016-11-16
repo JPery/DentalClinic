@@ -3,6 +3,7 @@ package com.example.jpery.dentalclinic.fragments;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.example.jpery.dentalclinic.utils.SimpleDividerItemDecoration;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,11 +37,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ConfirmArrangementFragment extends Fragment {
 
     private static ConfirmArrangementsAdapter mAdapter;
-    private String title;
+    private int kindOfIntervention;
     private String arrangementDate;
     private int userID;
+    private String arrangementComment;
     private DateFormat df = new SimpleDateFormat(Constants.DATE_FORMAT_STRING);
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +57,7 @@ public class ConfirmArrangementFragment extends Fragment {
         mAdapter = new ConfirmArrangementsAdapter(new ConfirmArrangementsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Arrangement item) {
+                df.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE));
                 arrangementDate = df.format(item.getDate());
                 AlertDialog diaBox = AskOption();
                 diaBox.show();
@@ -72,13 +75,15 @@ public class ConfirmArrangementFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.title = getArguments().getString(Constants.EXTRAS_TITLE);
+        this.kindOfIntervention = getArguments().getInt(Constants.EXTRAS_KIND_OF_INTERVENTION);
         this.userID = getArguments().getInt(Constants.API_USER_ID);
+        this.arrangementComment = getArguments().getString(Constants.EXTRAS_COMMENT);
         final Arrangement arrangement = new Arrangement(this);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        df.setTimeZone(TimeZone.getTimeZone(Constants.TIME_ZONE));
         String date = df.format(arrangement.getDate());
         ArrangementsService service = retrofit.create(ArrangementsService.class);
         Call<List<Arrangement>> call = service.getArrangementsbyDate(date);
@@ -93,7 +98,6 @@ public class ConfirmArrangementFragment extends Fragment {
                     Toast.makeText(getActivity().getCurrentFocus().getContext(), R.string.operation_not_completed, Toast.LENGTH_LONG).show();
                 Log.i("Response code", "" + response.code());
             }
-
             @Override
             public void onFailure(Call<List<Arrangement>>call, Throwable t) {
                 t.printStackTrace();
@@ -105,21 +109,21 @@ public class ConfirmArrangementFragment extends Fragment {
     private AlertDialog AskOption()
     {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(getActivity())
-                .setTitle("Confirm")
-                .setMessage("Are you sure you want to confirm?")
-                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.dialog_confirm)
+                .setMessage(R.string.dialog_text)
+                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Intent resultIntent = new Intent();
-                        resultIntent.putExtra(Constants.EXTRAS_TITLE,title);
+                        resultIntent.putExtra(Constants.EXTRAS_KIND_OF_INTERVENTION,kindOfIntervention);
                         resultIntent.putExtra(Constants.API_URL,userID);
                         resultIntent.putExtra(Constants.EXTRAS_DATE,arrangementDate);
+                        resultIntent.putExtra(Constants.EXTRAS_COMMENT,arrangementComment);
                         getActivity().setResult(Activity.RESULT_OK, resultIntent);
                         getActivity().finish();
                         dialog.dismiss();
                     }
-
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }

@@ -37,16 +37,16 @@ public class BudgetsFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Fragment fragment = new BudgetInformationFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString(Constants.EXTRAS_TITLE,adapter.getItem(position).toString());
+                bundle.putString(Constants.EXTRAS_KIND_OF_INTERVENTION,adapter.getItem(position).toString());
                 String description=null;
-                switch (adapter.getItem(position).toString()){
-                    case "Filling":
+                switch (position){
+                    case 0:
                         description = getString(R.string.filling_description);
                         break;
-                    case "Endodontics":
+                    case 1:
                         description = getString(R.string.endodontics_description);
                         break;
-                    case "Cleaning":
+                    case 2:
                         description = getString(R.string.cleaning_description);
                         break;
                 }
@@ -54,13 +54,12 @@ public class BudgetsFragment extends Fragment {
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment,"budgetsInfo");
-                fragmentTransaction.addToBackStack("budgetsInfo");
+                fragmentTransaction.replace(R.id.fragment_container, fragment,Constants.FRAGMENT_BUDGETS);
+                fragmentTransaction.addToBackStack(Constants.FRAGMENT_BUDGETS);
                 fragmentTransaction.commit();
                 fragmentManager.executePendingTransactions();
             }
         });
         return v;
     }
-
 }

@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity
                 fragment = getFragmentManager().findFragmentByTag(tag);
             }
             if (fragment != null && fragment instanceof BudgetInformationFragment) {
-                Log.i("TAG","MESSAGE");
                 super.onBackPressed();
             }else{
                 super.onBackPressed();

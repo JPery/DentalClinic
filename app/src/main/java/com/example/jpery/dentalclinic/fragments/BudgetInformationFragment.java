@@ -25,9 +25,9 @@ public class BudgetInformationFragment extends Fragment {
         TextView budgetTitle;
         TextView budgetDescription;
         View v = inflater.inflate(R.layout.fragment_budget_information, container, false);
-        budgetTitle = (TextView) v.findViewById(R.id.budget_title);
+        budgetTitle = (TextView) v.findViewById(R.id.arrangement_title);
         budgetDescription = (TextView) v.findViewById(R.id.budget_description);
-        budgetTitle.setText(getArguments().getString(Constants.EXTRAS_TITLE));
+        budgetTitle.setText(getArguments().getString(Constants.EXTRAS_KIND_OF_INTERVENTION));
         budgetDescription.setText(getArguments().getString(Constants.EXTRAS_DESCRIPTION));
         return v;
     }

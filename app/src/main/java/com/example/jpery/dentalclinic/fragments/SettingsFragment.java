@@ -26,7 +26,7 @@ public class SettingsFragment extends PreferenceFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Settings");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.action_settings);
         return super.onCreateView(inflater,container,savedInstanceState);
     }
 }

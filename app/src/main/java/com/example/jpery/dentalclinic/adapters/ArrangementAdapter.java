@@ -1,5 +1,6 @@
 package com.example.jpery.dentalclinic.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,34 +17,30 @@ import java.util.Locale;
 
 public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.ViewHolder> {
     private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
-
+    private static Context mContext;
     public interface OnItemClickListener {
-        void onItemClick(Arrangement item);     //Type of the element to be returned
+        void onItemClick(Arrangement item);
     }
 
     private final OnItemClickListener listener;
-
-    // Provide a suitable constructor (depends on the kind of dataset)
     public ArrangementAdapter(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.arrangement,parent,false);
+        mContext= parent.getContext();
+        View v = LayoutInflater.from(mContext).inflate(R.layout.arrangement,parent,false);
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(ArrangementsController.getInstance().getList().get(position),listener);
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return ArrangementsController.getInstance().getList().size();
@@ -74,14 +71,15 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
             dateView = (TextView) itemView.findViewById(R.id.dateView);
         }
 
-        private void bind(final Arrangement toDoItem, final OnItemClickListener listener) {
-            title.setText(toDoItem.getTitle());
-            dateView.setText(DATE_FORMAT.format(toDoItem.getDate()));
+        private void bind(final Arrangement item, final OnItemClickListener listener) {
+            String[] title_array = mContext.getResources().getStringArray(R.array.interventions_array);
+            title.setText(title_array[item.getKindOfIntervention()-1]);
+            dateView.setText(DATE_FORMAT.format(item.getDate()));
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(toDoItem);
+                    listener.onItemClick(item);
                 }
             });
         }

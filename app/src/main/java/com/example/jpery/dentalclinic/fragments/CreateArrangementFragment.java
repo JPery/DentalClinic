@@ -30,6 +30,7 @@ public class CreateArrangementFragment extends Fragment {
     private static String dateString;
     private static TextView dateView;
     private static TextView timeView;
+    private TextView commentView;
     private Spinner spinner;
 
     private Date mDate;
@@ -47,9 +48,8 @@ public class CreateArrangementFragment extends Fragment {
         getActivity().setTitle(R.string.title_add_arrangement_activity);
         dateView = (TextView) v.findViewById(R.id.date);
         timeView = (TextView) v.findViewById(R.id.time);
-
+        commentView = (TextView) v.findViewById(R.id.comment_edit_text);
         setDefaultDateTime();
-
         final Button datePickerButton = (Button) v.findViewById(R.id.date_picker_button);
         datePickerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -75,11 +75,12 @@ public class CreateArrangementFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = spinner.getSelectedItem().toString();
+                int kindOfIntervention = spinner.getSelectedItemPosition()+1;
                 String date = dateString + " " + timeString;
+                String comment = commentView.getText().toString();
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 Fragment fragment = new ConfirmArrangementFragment();
-                Arrangement.packageFragment(fragment,title,date);
+                Arrangement.packageFragment(fragment,kindOfIntervention,date, comment);
                 ft.replace(R.id.fragment_container, fragment, null);
                 ft.addToBackStack(null);
                 ft.commit();

@@ -14,7 +14,8 @@ import java.util.Locale;
 public class Arrangement {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
     private int id;
-    private String title;
+    private int kindOfIntervention;
+    private String comment;
     private Date date;
     private int owner;
 
@@ -22,38 +23,37 @@ public class Arrangement {
     }
 
     public Arrangement(Intent intent, int userID) {
-        title = intent.getStringExtra(Constants.EXTRAS_TITLE);
+        kindOfIntervention = intent.getIntExtra(Constants.EXTRAS_KIND_OF_INTERVENTION,-1);
         try {
             date = DATE_FORMAT.parse(intent.getStringExtra(Constants.EXTRAS_DATE));
         } catch (ParseException e) {
             date = new Date();
         }
+        comment = intent.getStringExtra(Constants.EXTRAS_COMMENT);
         owner = userID;
     }
 
     public Arrangement(Fragment fragment) {
         Bundle bundle = fragment.getArguments();
-        title = bundle.getString(Constants.EXTRAS_TITLE);
+        kindOfIntervention = bundle.getInt(Constants.EXTRAS_KIND_OF_INTERVENTION);
         try {
             date = DATE_FORMAT.parse(bundle.getString(Constants.EXTRAS_DATE));
         } catch (ParseException e) {
             date = new Date();
         }
+        comment = bundle.getString(Constants.EXTRAS_COMMENT);
     }
 
-    public static void packageFragment(Fragment fragment, String title, String date) {
+    public static void packageFragment(Fragment fragment, int kindOfIntervention, String date, String comment) {
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.EXTRAS_TITLE, title);
+        bundle.putInt(Constants.EXTRAS_KIND_OF_INTERVENTION, kindOfIntervention);
         bundle.putString(Constants.EXTRAS_DATE, date);
+        bundle.putString(Constants.EXTRAS_COMMENT, comment);
         fragment.setArguments(bundle);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public int getKindOfIntervention() {
+        return kindOfIntervention;
     }
 
     public Date getDate() {
@@ -68,7 +68,11 @@ public class Arrangement {
         this.id = id;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
     public String toString() {
-        return title + System.getProperty("line.separator") + DATE_FORMAT.format(date);
+        return kindOfIntervention + System.getProperty("line.separator") + DATE_FORMAT.format(date);
     }
 }

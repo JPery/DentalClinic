@@ -13,7 +13,7 @@
         android:layout_marginTop="22dp"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget"
         android:textSize="24sp"
-        android:id="@+id/budget_title" />
+        android:id="@+id/arrangement_title" />
 
     <TextView
         android:text="Description"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/budget_description"
         android:padding="10sp"
-        android:layout_below="@+id/budget_title"
+        android:layout_below="@+id/arrangement_title"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -10,7 +10,7 @@
     <string name="navigation_drawer_close">Cerrando navigation drawer</string>
 
     <string name="lorem_ipsum">Lorem fistrum fistro officia benemeritaar no te digo trigo por no llamarte Rodrigor ahorarr ullamco diodeno. Laboris ullamco por la gloria de mi madre dolor me cago en tus muelas se calle ustée voluptate ut ese hombree hasta luego Lucas nisi. Hasta luego Lucas ese hombree ad por la gloria de mi madre está la cosa muy malar.</string>
-    <string name="filling_description">The dental filling is a dental restorative material used to restore the function, integrity and morphology of missing tooth structure. The structural loss typically results from caries or external trauma.</string>
+    <string name="filling_description">Un empaste dental es un material restaurativo utilizado para restaurar la funcionalidad, integridad y morfología de una estructura dental. La estructura dental se pierde normalmente debido a caries o traumatismos externos.</string>
     <string name="cleaning_description">Teeth cleaning is part of oral hygiene and involves the removal of dental plaque from teeth with the intention of preventing cavities, gingivitis, and periodontal disease. People routinely clean their own teeth by brushing and interdental cleaning, and dental hygienists can remove hardened deposits not removed by routine cleaning. Those with dentures and natural teeth may supplement their cleaning with a denture cleaner.</string>
     <string name="endodontics_description">The endodontic therapy or root canal therapy is a sequence of treatment for the infected pulp of a tooth which results in the elimination of infection and the protection of the decontaminated tooth from future microbial invasion. Root canals, and their associated pulp chamber, are the physical hollows within a tooth that are naturally inhabited by nerve tissue, blood vessels and other cellular entities.</string>
     <string name="login_image_description">Imagen de un diente</string>
@@ -34,6 +34,12 @@
     <string name="pref_welcome_message_subtitle">Te recuerda tus citas pendientes</string>
     <string name="pref_username">Nombre de usuario</string>
     <string name="pref_username_subtitle">Nombre utilizado en el mensaje de bienvenida</string>
+    <string name="delete_button">Eliminar</string>
+    <string name="notifications_button">Notificaciones</string>
+    <string name="label_comments">Comentarios</string>
+    <string name="dialog_confirm">Confirmar</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_text">Are you sure you want to confirm?</string>
     <string-array name="interventions_array">
         <item>Empaste</item>
         <item>Endodoncia</item>

@@ -18,18 +18,17 @@ import java.util.Locale;
 public class ConfirmArrangementsAdapter extends RecyclerView.Adapter<ConfirmArrangementsAdapter.ViewHolder> {
     private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
     private List<Arrangement> list = new ArrayList<>();
+
     public interface OnItemClickListener {
-        void onItemClick(Arrangement item);     //Type of the element to be returned
+        void onItemClick(Arrangement item);
     }
 
     private final OnItemClickListener listener;
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public ConfirmArrangementsAdapter(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
@@ -37,14 +36,12 @@ public class ConfirmArrangementsAdapter extends RecyclerView.Adapter<ConfirmArra
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(list.get(position),listener);
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return list.size();
