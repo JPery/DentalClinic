@@ -34,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ConfirmArrangementFragment extends Fragment {
+public class ConfirmAppointmentFragment extends Fragment {
 
     private static ConfirmArrangementsAdapter mAdapter;
     private int kindOfIntervention;

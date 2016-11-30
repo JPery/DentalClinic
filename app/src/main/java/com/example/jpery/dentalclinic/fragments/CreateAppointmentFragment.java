@@ -24,7 +24,7 @@ import com.example.jpery.dentalclinic.R;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CreateArrangementFragment extends Fragment {
+public class CreateAppointmentFragment extends Fragment {
 
     private static String timeString;
     private static String dateString;
@@ -35,7 +35,7 @@ public class CreateArrangementFragment extends Fragment {
 
     private Date mDate;
 
-    public CreateArrangementFragment() {
+    public CreateAppointmentFragment() {
     }
 
 

@@ -8,17 +8,17 @@ import java.util.List;
 /**
  * Created by JPery on 11/11/2016
  */
-public class ArrangementsController {
+public class AppointmentController {
 
     List<Arrangement> list = new ArrayList<>();
 
-    private static ArrangementsController ourInstance = new ArrangementsController();
+    private static AppointmentController ourInstance = new AppointmentController();
 
-    public static ArrangementsController getInstance() {
+    public static AppointmentController getInstance() {
         return ourInstance;
     }
 
-    private ArrangementsController() {
+    private AppointmentController() {
     }
 
     public List<Arrangement> getList(){

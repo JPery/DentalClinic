@@ -7,7 +7,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +22,7 @@ import com.example.jpery.dentalclinic.services.ArrangementsService;
 import com.example.jpery.dentalclinic.utils.Constants;
 import com.example.jpery.dentalclinic.R;
 import com.example.jpery.dentalclinic.utils.SimpleDividerItemDecoration;
-import com.example.jpery.dentalclinic.activities.AddArrangementActivity;
+import com.example.jpery.dentalclinic.activities.AddAppointmentActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -38,14 +37,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ArrangementsFragment extends Fragment {
+public class AppointmentFragment extends Fragment {
 
 
     private OnArrangementsLoadedListener mCallback;
     private static ArrangementAdapter mAdapter;
     private static int userID;
 
-    public ArrangementsFragment() {
+    public AppointmentFragment() {
     }
 
     @Override
@@ -89,7 +88,7 @@ public class ArrangementsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(getActivity(), AddArrangementActivity.class), 1);
+                startActivityForResult(new Intent(getActivity(), AddAppointmentActivity.class), 1);
             }
         });
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_activity_navigation_drawer);
@@ -100,7 +99,7 @@ public class ArrangementsFragment extends Fragment {
         mAdapter = new ArrangementAdapter(new ArrangementAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Arrangement item) {
-                Fragment fragment = new ArrangementInformationFragment();
+                Fragment fragment = new AppointmentInformationFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt(Constants.EXTRAS_KIND_OF_INTERVENTION,item.getKindOfIntervention());
                 DateFormat df = new SimpleDateFormat(Constants.DATE_FORMAT_STRING);

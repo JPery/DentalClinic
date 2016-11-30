@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Arrangement {
+public class Appointment {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
     private int id;
     private int kindOfIntervention;
@@ -19,10 +19,10 @@ public class Arrangement {
     private Date date;
     private int owner;
 
-    public Arrangement() {
+    public Appointment() {
     }
 
-    public Arrangement(Intent intent, int userID) {
+    public Appointment(Intent intent, int userID) {
         kindOfIntervention = intent.getIntExtra(Constants.EXTRAS_KIND_OF_INTERVENTION,-1);
         try {
             date = DATE_FORMAT.parse(intent.getStringExtra(Constants.EXTRAS_DATE));
@@ -33,7 +33,7 @@ public class Arrangement {
         owner = userID;
     }
 
-    public Arrangement(Fragment fragment) {
+    public Appointment(Fragment fragment) {
         Bundle bundle = fragment.getArguments();
         kindOfIntervention = bundle.getInt(Constants.EXTRAS_KIND_OF_INTERVENTION);
         try {

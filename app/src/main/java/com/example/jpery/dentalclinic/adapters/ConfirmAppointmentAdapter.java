@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ConfirmArrangementsAdapter extends RecyclerView.Adapter<ConfirmArrangementsAdapter.ViewHolder> {
+public class ConfirmAppointmentAdapter extends RecyclerView.Adapter<ConfirmAppointmentAdapter.ViewHolder> {
     private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
     private List<Arrangement> list = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class ConfirmArrangementsAdapter extends RecyclerView.Adapter<ConfirmArra
 
     private final OnItemClickListener listener;
 
-    public ConfirmArrangementsAdapter(OnItemClickListener listener) {
+    public ConfirmAppointmentAdapter(OnItemClickListener listener) {
         this.listener = listener;
     }
 

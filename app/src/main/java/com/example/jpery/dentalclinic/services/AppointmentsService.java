@@ -14,7 +14,7 @@ import retrofit2.http.Path;
  * Created by j.pery on 10/11/16.
  */
 
-public interface ArrangementsService {
+public interface AppointmentsService {
     @GET("arrangements/{arrangementid}")
     Call<Arrangement> getArrangement(@Path("arrangementid") int arrangementid);
 

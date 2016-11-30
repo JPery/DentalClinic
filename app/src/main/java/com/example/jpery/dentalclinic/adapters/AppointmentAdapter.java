@@ -15,7 +15,7 @@ import com.example.jpery.dentalclinic.model.Arrangement;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.ViewHolder> {
+public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.ViewHolder> {
     private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
     private static Context mContext;
     public interface OnItemClickListener {
@@ -23,7 +23,7 @@ public class ArrangementAdapter extends RecyclerView.Adapter<ArrangementAdapter.
     }
 
     private final OnItemClickListener listener;
-    public ArrangementAdapter(OnItemClickListener listener) {
+    public AppointmentAdapter(OnItemClickListener listener) {
         this.listener = listener;
     }
 

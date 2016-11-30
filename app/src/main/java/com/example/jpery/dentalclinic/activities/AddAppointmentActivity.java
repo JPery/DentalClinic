@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.jpery.dentalclinic.fragments.CreateArrangementFragment;
 import com.example.jpery.dentalclinic.R;
 
-public class AddArrangementActivity extends AppCompatActivity {
+public class AddAppointmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -13,9 +13,9 @@ import com.example.jpery.dentalclinic.utils.Constants;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ArrangementInformationFragment extends Fragment {
+public class AppointmentInformationFragment extends Fragment {
 
-    public ArrangementInformationFragment() {
+    public AppointmentInformationFragment() {
     }
 
 
