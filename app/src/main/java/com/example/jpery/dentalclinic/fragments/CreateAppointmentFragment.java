@@ -17,9 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.jpery.dentalclinic.model.Arrangement;
-import com.example.jpery.dentalclinic.utils.Constants;
 import com.example.jpery.dentalclinic.R;
+import com.example.jpery.dentalclinic.model.Appointment;
+import com.example.jpery.dentalclinic.utils.Constants;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -42,10 +42,10 @@ public class CreateAppointmentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_create_arrangement,container,false);
+        View v = inflater.inflate(R.layout.fragment_create_appointment,container,false);
         dateString="";
         timeString="";
-        getActivity().setTitle(R.string.title_add_arrangement_activity);
+        getActivity().setTitle(R.string.title_add_appointment_activity);
         dateView = (TextView) v.findViewById(R.id.date);
         timeView = (TextView) v.findViewById(R.id.time);
         commentView = (TextView) v.findViewById(R.id.comment_edit_text);
@@ -79,8 +79,8 @@ public class CreateAppointmentFragment extends Fragment {
                 String date = dateString + " " + timeString;
                 String comment = commentView.getText().toString();
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Fragment fragment = new ConfirmArrangementFragment();
-                Arrangement.packageFragment(fragment,kindOfIntervention,date, comment);
+                Fragment fragment = new ConfirmAppointmentFragment();
+                Appointment.packageFragment(fragment,kindOfIntervention,date, comment);
                 ft.replace(R.id.fragment_container, fragment, null);
                 ft.addToBackStack(null);
                 ft.commit();

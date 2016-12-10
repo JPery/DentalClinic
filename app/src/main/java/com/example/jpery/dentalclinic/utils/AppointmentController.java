@@ -1,6 +1,6 @@
 package com.example.jpery.dentalclinic.utils;
 
-import com.example.jpery.dentalclinic.model.Arrangement;
+import com.example.jpery.dentalclinic.model.Appointment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class AppointmentController {
 
-    List<Arrangement> list = new ArrayList<>();
+    List<Appointment> list = new ArrayList<>();
 
     private static AppointmentController ourInstance = new AppointmentController();
 
@@ -21,7 +21,19 @@ public class AppointmentController {
     private AppointmentController() {
     }
 
-    public List<Arrangement> getList(){
+    public boolean deleteElementbyId(int appointmentID){
+        boolean deleted = false;
+        for (Appointment appointment:list) {
+            if(appointment.getId() == appointmentID){
+                list.remove(appointment);
+                deleted=true;
+                break;
+            }
+        }
+        return deleted;
+    }
+
+    public List<Appointment> getList(){
         return list;
     }
 }

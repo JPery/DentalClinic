@@ -1,11 +1,14 @@
 package com.example.jpery.dentalclinic.services;
 
-import com.example.jpery.dentalclinic.model.Arrangement;
+import com.example.jpery.dentalclinic.model.Appointment;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -15,15 +18,18 @@ import retrofit2.http.Path;
  */
 
 public interface AppointmentsService {
-    @GET("arrangements/{arrangementid}")
-    Call<Arrangement> getArrangement(@Path("arrangementid") int arrangementid);
+    @GET("arrangements/{appointmentID}")
+    Call<Appointment> getAppointment(@Path("appointmentID") int appointmentID);
 
-    @GET("arrangements/user={userid}")
-    Call<List<Arrangement>> getArrangementsbyUserID(@Path("userid") int userid);
+    @GET("arrangements/user={userID}")
+    Call<List<Appointment>> getAppointmentsbyUserID(@Path("userID") int userID);
 
     @POST("arrangements/")
-    Call<Arrangement> addArrangement(@Body Arrangement arrangement);
+    Call<Appointment> addAppointment(@Body Appointment appointment);
 
     @GET("arrangements/date={date}")
-    Call<List<Arrangement>> getArrangementsbyDate(@Path("date") String date);
+    Call<List<Appointment>> getAppointmentsbyDate(@Path("date") String date);
+
+    @DELETE("arrangements/{appointmentID}")
+    Call<ResponseBody> deleteAppointment(@Path("appointmentID") int appointmentID);
 }

@@ -22,6 +22,6 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView4"
-        android:id="@+id/arrangements_confirm_list" />
+        android:id="@+id/appointments_confirm_list" />
 
 </RelativeLayout>

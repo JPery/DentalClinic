@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jpery.dentalclinic.R;
-import com.example.jpery.dentalclinic.model.Arrangement;
+import com.example.jpery.dentalclinic.model.Appointment;
 import com.example.jpery.dentalclinic.utils.Constants;
 
 import java.text.SimpleDateFormat;
@@ -17,10 +17,10 @@ import java.util.Locale;
 
 public class ConfirmAppointmentAdapter extends RecyclerView.Adapter<ConfirmAppointmentAdapter.ViewHolder> {
     private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.DATE_FORMAT_STRING, Locale.US);
-    private List<Arrangement> list = new ArrayList<>();
+    private List<Appointment> list = new ArrayList<>();
 
     public interface OnItemClickListener {
-        void onItemClick(Arrangement item);
+        void onItemClick(Appointment item);
     }
 
     private final OnItemClickListener listener;
@@ -32,7 +32,7 @@ public class ConfirmAppointmentAdapter extends RecyclerView.Adapter<ConfirmAppoi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.confirm_arrangement,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.confirm_appointment,parent,false);
         return new ViewHolder(v);
     }
 
@@ -47,18 +47,9 @@ public class ConfirmAppointmentAdapter extends RecyclerView.Adapter<ConfirmAppoi
         return list.size();
     }
 
-    public void add(Arrangement item) {
+    public void add(Appointment item) {
         list.add(item);
         notifyDataSetChanged();
-    }
-
-    public void clear(){
-        list.clear();
-        notifyDataSetChanged();
-    }
-
-    public Object getItem(int pos) {
-        return list.get(pos);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,7 +61,7 @@ public class ConfirmAppointmentAdapter extends RecyclerView.Adapter<ConfirmAppoi
             dateView = (TextView) itemView.findViewById(R.id.titleView);
         }
 
-        private void bind(final Arrangement toDoItem, final OnItemClickListener listener) {
+        private void bind(final Appointment toDoItem, final OnItemClickListener listener) {
             dateView.setText(DATE_FORMAT.format(toDoItem.getDate()));
             itemView.setOnClickListener(new View.OnClickListener() {
 

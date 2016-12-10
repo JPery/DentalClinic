@@ -7,9 +7,12 @@ package com.example.jpery.dentalclinic.utils;
 
 public final class Constants {
     public static final String API_URL = "http://qss.unex.es:9000";
+    ///public static final String API_URL = "http://10.0.2.2:9000";
+
     public static final String TIME_ZONE = "GMT+1";
     public static final String API_USER_ID = "userID";
     public static final String EXTRAS_KIND_OF_INTERVENTION = "kindOfIntervention";
+    public static final String EXTRAS_APPOINTMENT_ID = "AppointmentID";
     public static final String EXTRAS_DESCRIPTION = "Description";
     public static final String EXTRAS_DATE = "Date";
     public static final String EXTRAS_COMMENT = "Comment";

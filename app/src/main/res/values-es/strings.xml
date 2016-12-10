@@ -3,9 +3,9 @@
     <string name="title_activity_navigation_drawer">Citas</string>
     <string name="title_information_fragment">Información</string>
     <string name="title_budgets_fragment">Presupuestos</string>
-    <string name="title_add_arrangement_activity">Añadir Cita</string>
-    <string name="title_activity_confirm_arrangement">Confirmar Cita</string>
-    <string name="select_arrangement">Selecciona una Cita</string>
+    <string name="title_add_appointment_activity">Añadir Cita</string>
+    <string name="title_activity_confirm_appointment">Confirmar Cita</string>
+    <string name="select_appointment">Selecciona una Cita</string>
     <string name="navigation_drawer_open">Abriendo navigation drawer</string>
     <string name="navigation_drawer_close">Cerrando navigation drawer</string>
 
@@ -23,11 +23,11 @@
     <string name="internet_problem">Hay un problema con tu conexión a Internet</string>
     <string name="operation_not_completed">La operación no ha podido ser completada</string>
     <string name="action_settings">Ajustes</string>
-    <string name="choose_arrangement">Selecciona una Cita:</string>
-    <string name="chooseDate_add_arrangement">Elige fecha</string>
-    <string name="chooseTime_add_arrangement">Elige hora</string>
-    <string name="submit_add_arrangement">Consultar</string>
-    <string name="titleLabel_add_arrangement">Tipo de Intervención</string>
+    <string name="choose_appointment">Selecciona una Cita:</string>
+    <string name="chooseDate_add_appointment">Elige fecha</string>
+    <string name="chooseTime_add_appointment">Elige hora</string>
+    <string name="submit_add_appointment">Consultar</string>
+    <string name="titleLabel_add_appointment">Tipo de Intervención</string>
     <string name="logout_item">Cerrar Sesión</string>
     <string name="pref_category1">Pantalla Principal</string>
     <string name="pref_welcome_message">Mensaje de inicio</string>
@@ -39,7 +39,25 @@
     <string name="label_comments">Comentarios</string>
     <string name="dialog_confirm">Confirmar</string>
     <string name="dialog_cancel">Cancelar</string>
-    <string name="dialog_text">Are you sure you want to confirm?</string>
+    <string name="dialog_text">¿Seguro que quieres confirmar?</string>
+    <string name="dialog_delete_text">¿Estás seguro de que quieres eliminar esta cita?</string>
+    <string name="dialog_delete">Eliminar</string>
+    <string name="notifications_dialog_title">¿A qué hora?</string>
+    <string name="notification_text">Tienes una cita en %1$s</string>
+    <string name="scheduled_notification_toast">Notificación programada %1$s antes de tu cita</string>
+    <string name="welcome_message_text">Hola, %1$s. Tienes %2$d %3$s</string>
+    <string name="welcome_message_dismiss">Dismiss</string>
+    <plurals name="numberOfAppointments">
+        <item quantity="one">cita pendiente</item>
+        <item quantity="other">citas pendientes</item>
+    </plurals>
+    <string-array name="time_array">
+        <item>5 minutos</item>
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+        <item>una hora</item>
+        <item>dos horas</item>
+    </string-array>
     <string-array name="interventions_array">
         <item>Empaste</item>
         <item>Endodoncia</item>
