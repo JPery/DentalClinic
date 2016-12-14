@@ -149,7 +149,7 @@ public class AppointmentInformationFragment extends Fragment {
                         alertTimeMilis = cal.getTimeInMillis()-7200000;
                         break;
                 }
-                Toast.makeText(getActivity().getCurrentFocus().getContext(),getString(R.string.scheduled_notification_toast,times),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getCurrentFocus().getContext(),getString(R.string.scheduled_notification_toast,times[which]),Toast.LENGTH_SHORT).show();
                 scheduleNotification(getActivity().getCurrentFocus().getContext(),alertTimeMilis,appointmentId, times[which]);
                 dialog.dismiss();
             }
