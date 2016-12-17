@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         if(userID!=-1 && !username.equals("") && !password.equals("")) {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.putExtra(Constants.API_USER_ID, userID);
+            intent.putExtra(Constants.API_USER_NAME, username);
             startActivity(intent);
         }
         setContentView(R.layout.activity_login);
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (response.code() == 200) {
                                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                     intent.putExtra(Constants.API_USER_ID, response.body().getId());
+                                    intent.putExtra(Constants.API_USER_NAME, response.body().getName());
                                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                                     SharedPreferences.Editor ed = prefs.edit();
                                     ed.putInt(KEY_USERID,response.body().getId());

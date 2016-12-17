@@ -27,6 +27,7 @@ import com.example.jpery.dentalclinic.fragments.BudgetsFragment;
 import com.example.jpery.dentalclinic.fragments.InformationFragment;
 import com.example.jpery.dentalclinic.fragments.SettingsFragment;
 import com.example.jpery.dentalclinic.utils.AppointmentController;
+import com.example.jpery.dentalclinic.utils.Constants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AppointmentFragment.OnAppointmentsLoadedListener {
@@ -48,8 +49,10 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_appointments);
+        View header =  navigationView.getHeaderView(0);
         Fragment fragment = new AppointmentFragment();
         Bundle bundle = getIntent().getExtras();
+        ((TextView) header.findViewById(R.id.username_text_view)).setText(bundle.getString(Constants.API_USER_NAME));
         fragment.setArguments(bundle);
         showFragment(fragment);
     }
